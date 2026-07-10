@@ -13,22 +13,39 @@ This plugin detects clients running appropriately patched game binaries and allo
 
 Clients are required to use a patched client.dll in order to use the functionality of this plugin. Client binaries are patched to restore the connection between a netprop (m_iDefaultFOV) and a field of view engine cvar. Additionally, a "magic byte"-style patch detection is implemented by renaming a unused engine cvar. The plugin checks for the presence of the modified engine cvar in order to confirm the presence of the patch.
 
+## Further fixes
+Further fixes were built upon the original work of Lilihierax and Rain by bauxite, these fixes include:
+* Stickyfeet patch (was already shipped in a game update via steam)
+* FoV Defaults to 75 with the patch (preserve the behaviour of the default game)
+* Prop fade distance should be matched to original game
+* FoV now lerps properly when zooming, no snapping issue
+* Bulletblock material works (needs server and clients to have updated surface property file and new bulletblock material - use `neotoolsblockbullets.vmt` in your maps)
+* Muzzle flash no longer scales with latency! ... but it may be a tiny bit different than the orignal at 0 ping for some weapons (worth the tradeoff imo)
+
+## SHA-1 Hashes
+* client.dll : `5a04edabe2e4710f6e6201bc9d3ed34ae0190bc0`
+* server.dll : `b39c47bb50792c757e717f89a4c73f89b724ecb5`
+
+## Help, I'm scared of the "further fixes" extensive DLL modifications!
+There's a few extra lines of code near the end of the DLL for fixing prop fade distance and bullet block material support. Other simple edits around the DLL for fixing default FoV, making FoV zoom lerp work properly and such. I couldn't even go through all the edits because I suck at keeping notes, I recommend using the HxD hex editor program or similar to check what's different to the original if you want to investigate. There's not actually a whole lot of differences but the file sizes are larger due to some padding at the end of the file. Even if I could explain everything here, it might not be the truth or it might be incorrect, your best bet is to compare it to the original to make sure it's legit.
+
 ## Build requirements
 * SourceMod 1.11 or newer
 
 ## Installation (Server)
+* Create a backup of server.dll in `...\NEOTOKYO\NeotokyoSource\bin\`
+* Download patched binary from [bin/](bin/)
+* Overwrite existing file in `...\NEOTOKYO\NeotokyoSource\bin\`
 * The repo contains the plugin as a `.sp` script, which has to be compiled to a `.smx` plugin binary using the SourceMod Plugin Compiler, available as a web app [here](https://www.sourcemod.net/compiler.php).
 * Move the compiled .smx binary to `...\addons\sourcemod\plugins\`
 
 ## Installation (Client)
-* Create a backup of client.dll in `...\SteamLibrary\steamapps\common\NEOTOKYO\NeotokyoSource\bin\`
-* Download patched binaries (client.dll) from [sourcemod-nt-fovchanger/client/bin/](client/bin/)
-* Overwrite existing file in `...\SteamLibrary\steamapps\common\NEOTOKYO\NeotokyoSource\bin\`
-* Alternatively download the Python binary patcher script and follow [these instructions](https://github.com/Lilihierax/sourcemod-nt-fovchanger/tree/main/client/patch) to patch the file
-* Alternatively use a hex editor of your choice and follow [these instructions](https://github.com/Lilihierax/sourcemod-nt-fovchanger/tree/main/client/patch) to manually patch the file
+* Create a backup of client.dll and server.dll in `...\SteamLibrary\steamapps\common\NEOTOKYO\NeotokyoSource\bin\`
+* Download patched binaries from [bin/](bin/)
+* Overwrite existing files in `...\SteamLibrary\steamapps\common\NEOTOKYO\NeotokyoSource\bin\`
 
 ## Uninstallation (Client)
-* Overwrite patched client.dll with a backup of the original file
+* Overwrite patched client.dll and server.dll with a backup of the original files
 * Note that verifying integrity of game files on Steam will also replace the patched binaries with original game files although this runs the risk of possibly losing other modifications as well
 
 ## Important notes regarding binary patching
@@ -44,18 +61,18 @@ I will not be held responsible for any damages, incl. changes in VAC standing, r
 * Server operators can define the range of acceptable field of view values by using `sm_nt_fov_min` and `sm_nt_fov_max`
 
 ## Known issues
-* Zooming with weapons can cause snapping-like behavior. This effect is most prominent when a weapon is zoomed out while a high field of view is being used
 * Viewmodel field of view stays fixed and is not affected by changes to world field of view
-* Prop fade issues can be triggered by high field of view values, i.e. distant props (level assets) stop being rendered - and providing occlusion - prematurely at relatively high distances from the player
 * Issues and glitches caused by this modification can be reported as a GitHub issue or alternatively on Active Neotokyo Players ("ANP") [Discord server](https://discord.gg/JJBMzeqfdh)
 
 ## Authors
 * Original research and proof of concept plugin by Lilihierax
 * Plugin development by Rain
-* Patcher by Lilihierax
-* Additional thanks to Kudegra and Jef for their efforts in reverse engineering Neotokyo
-* Additional thanks to Dennogin and Milk for playtesting
+* Further fixes by bauxite
+* Additional thanks to DESTROYGIRL for mapping and materials related assistance
+* Additional thanks to Kudegra, Jef, Wak for their efforts in reverse engineering Neotokyo
+* Additional thanks to Dennogin, Milk, Deer for playtesting
 
 ## Changelog
 * 0.1.0 - Initial proof of concept release (March 2023) for NEOTOKYO° (Steam App ID: 244630, Steam Build ID: 1981783) by Lilihierax
 * 0.2.0 - Initial release of reworked plugin by Rain: added min/max bounds for the FOV, optional graphical menu, binary patch detection using the "fovispatched" client cvar and clientprefs
+* 1.0.0 - Further fixes by bauxite
