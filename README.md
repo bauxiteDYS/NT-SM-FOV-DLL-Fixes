@@ -36,6 +36,10 @@ There's a few extra lines of code near the end of the DLL for fixing prop fade d
 * Create a backup of server.dll in `...\<your server dir>\NeotokyoSource\bin\`
 * Download patched binary from [NEOTOKYO/NeotokyoSource/bin/](NEOTOKYO/NeotokyoSource/bin/)
 * Overwrite existing file in `...\NEOTOKYO\NeotokyoSource\bin\`
+* Do the same for:
+  * `NEOTOKYO\hl2\scripts\surfaceproperties.txt`
+  * `NEOTOKYO\NeotokyoSource\materials\tools\neotoolsblockbullets.vmt`
+  * `NEOTOKYO\NeotokyoSource\materials\tools\neotoolsblockbullets.vtf`
 * The repo contains the plugin as a `.sp` script, which has to be compiled to a `.smx` plugin binary using the SourceMod Plugin Compiler, available as a web app [here](https://www.sourcemod.net/compiler.php).
 * Move the compiled .smx binary to `...\addons\sourcemod\plugins\`
 
@@ -43,6 +47,10 @@ There's a few extra lines of code near the end of the DLL for fixing prop fade d
 * Create a backup of client.dll and server.dll in `...\SteamLibrary\steamapps\common\NEOTOKYO\NeotokyoSource\bin\`
 * Download patched binaries from [NEOTOKYO/NeotokyoSource/bin/](NEOTOKYO/NeotokyoSource/bin/)
 * Overwrite existing files in `...\SteamLibrary\steamapps\common\NEOTOKYO\NeotokyoSource\bin\`
+* Do the same for:
+  * `NEOTOKYO\hl2\scripts\surfaceproperties.txt`
+  * `NEOTOKYO\NeotokyoSource\materials\tools\neotoolsblockbullets.vmt`
+  * `NEOTOKYO\NeotokyoSource\materials\tools\neotoolsblockbullets.vtf`
 
 ## Uninstallation (Client)
 * Overwrite patched client.dll and server.dll with a backup of the original files
