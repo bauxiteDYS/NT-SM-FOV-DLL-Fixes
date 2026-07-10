@@ -14,7 +14,7 @@ This plugin detects clients running appropriately patched game binaries and allo
 Clients are required to use a patched client.dll in order to use the functionality of this plugin. Client binaries are patched to restore the connection between a netprop (m_iDefaultFOV) and a field of view engine cvar. Additionally, a "magic byte"-style patch detection is implemented by renaming a unused engine cvar. The plugin checks for the presence of the modified engine cvar in order to confirm the presence of the patch.
 
 ## Further fixes
-Further fixes were built upon the original work of Lilihierax and Rain by bauxite, these fixes include:
+Further fixes by bauxite were built upon the original work of Lilihierax and Rain (see credits for those that assisted in the fixes), these fixes include:
 * Stickyfeet patch (was already shipped in a game update via steam)
 * FoV Defaults to 75 with the patch (preserve the behaviour of the default game)
 * Prop fade distance should be matched to original game
