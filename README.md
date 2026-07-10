@@ -53,9 +53,12 @@ There's a few extra lines of code near the end of the DLL for fixing prop fade d
   * `NEOTOKYO\NeotokyoSource\materials\tools\neotoolsblockbullets.vtf`
 
 ## Uninstallation (Client)
-* Overwrite patched client.dll and server.dll with a backup of the original files
+* Overwrite patched client.dll, server.dll and surfaceproperties.txt with a backup of the original files
 * Note that verifying integrity of game files on Steam will also replace the patched binaries with original game files although this runs the risk of possibly losing other modifications as well
-
+* Delete:
+  * `NEOTOKYO\NeotokyoSource\materials\tools\neotoolsblockbullets.vmt`
+  * `NEOTOKYO\NeotokyoSource\materials\tools\neotoolsblockbullets.vtf`
+  
 ## Important notes regarding binary patching
 The plugin requires clients to have patched game binaries in order to provide any meaningful functionality to players. Binary patching - or rather using modified game binaries - is considered a high-risk activity and may result in anticheat-related consequences. The absence of VAC in Neotokyo has not been throughoughly confirmed by me, Lilihierax, and the safe use of this plugin-patch concept relies entirely on empirical observations from the community using NTCore's LAA patch extensively over a long period of time without unforeseen consequences as well as [comments made by Valve Software employees](https://github.com/ValveSoftware/source-sdk-2013/issues/76#issuecomment-21562961).
 
